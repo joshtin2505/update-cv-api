@@ -5,7 +5,7 @@ function getCVById(req: Request, res: Response) {
   const {
     id,
     email
-  }: { id?: number; email?: `${string}@${string}.${string}` } = req.body
+  }: { id?: number; email?: `${string}@${string}.${string}` } = req.params
   pool
     .query(
       `SELECT 
@@ -82,16 +82,16 @@ function getCVById(req: Request, res: Response) {
         Proyectos.project_url
 
         FROM Personas
-        LEFT JOIN Perfiles ON Personas.id = Perfiles.persona_id
-        LEFT JOIN Experiencias ON Personas.id = Experiencias.persona_id
-        LEFT JOIN Voluntariados ON Personas.id = Voluntariados.persona_id
-        LEFT JOIN Educacion ON Personas.id = Educacion.persona_id
-        LEFT JOIN Premios ON Personas.id = Premios.persona_id
-        LEFT JOIN Certificados ON Personas.id = Certificados.persona_id
-        LEFT JOIN Publicaciones ON Personas.id = Publicaciones.persona_id
-        LEFT JOIN Habilidades ON Personas.id = Habilidades.persona_id
-        LEFT JOIN Idiomas ON Personas.id = Idiomas.persona_id
-        LEFT JOIN Proyectos ON Personas.id = Proyectos.persona_id
+        LEFT JOIN Perfiles ON Personas.id = Perfiles.person_id
+        LEFT JOIN Experiencias ON Personas.id = Experiencias.person_id
+        LEFT JOIN Voluntariados ON Personas.id = Voluntariados.person_id
+        LEFT JOIN Educacion ON Personas.id = Educacion.person_id
+        LEFT JOIN Premios ON Personas.id = Premios.person_id
+        LEFT JOIN Certificados ON Personas.id = Certificados.person_id
+        LEFT JOIN Publicaciones ON Personas.id = Publicaciones.person_id
+        LEFT JOIN Habilidades ON Personas.id = Habilidades.person_id
+        LEFT JOIN Idiomas ON Personas.id = Idiomas.person_id
+        LEFT JOIN Proyectos ON Personas.id = Proyectos.person_id
         WHERE Personas.id = $1 OR Personas.email = $2 ;`,
       [id, email]
     )
@@ -99,7 +99,7 @@ function getCVById(req: Request, res: Response) {
       res.send(data.rows)
     })
     .catch((error) => {
-      console.error(error)
+      res.send(error)
     })
 }
 

@@ -57,7 +57,7 @@ function createCVTables() {
 
             CREATE TABLE IF NOT EXISTS Educacion (
                 id SERIAL PRIMARY KEY,
-                persona_id INT NOT NULL REFERENCES Personas(id) ON DELETE CASCADE ON UPDATE CASCADE,
+                person_id INT NOT NULL REFERENCES Personas(id) ON DELETE CASCADE ON UPDATE CASCADE,
                 institution VARCHAR(255) NOT NULL,
                 institution_url VARCHAR(255),
                 area VARCHAR(255) NOT NULL,
