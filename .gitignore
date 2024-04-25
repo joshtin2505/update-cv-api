@@ -1,0 +1,17 @@
+# Dependencias
+/node_modules
+
+# Archivos generados
+/dist
+/build
+
+# Archivos de configuración
+.env
+
+# Logs
+/logs
+
+# Archivos de respaldo
+*.bak
+*.swp
+*.tmp
