@@ -15,7 +15,7 @@ function getCVById(req: Request, res: Response) {
             'email', Personas.email,
             'phone', Personas.phone,
             'url', Personas.web_site,
-            'summary', Personas.summary
+            'summary', Personas.summary,
             'location', json_build_object(
                 'address', Location.address,
                 'postalCode', Location.postal_code,
