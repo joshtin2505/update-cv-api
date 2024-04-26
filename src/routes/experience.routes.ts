@@ -3,7 +3,7 @@ import {
   createCVExperience,
   deleteCVExperience,
   updateCVExperience
-} from '../controllers/experinece.controller'
+} from '../controllers/experience.controller'
 
 const router = Router()
 
