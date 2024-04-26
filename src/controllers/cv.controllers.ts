@@ -8,31 +8,31 @@ function getCVById(req: Request, res: Response) {
     .query(
       `SELECT 
       json_build_object(
-        'person', json_build_object(
+        'basics', json_build_object(
             'name', Personas.name,
             'label', Personas.label,
             'image', Personas.image,
             'email', Personas.email,
             'phone', Personas.phone,
-            'website', Personas.web_site,
+            'url', Personas.web_site,
             'summary', Personas.summary
+            'location', json_build_object(
+                'address', Location.address,
+                'postalCode', Location.postal_code,
+                'city', Location.city,
+                'countryCode', Location.country_code,
+                'region', Location.region
+            ),
+            'profiles', json_build_object(
+                'network', Perfiles.network_name,
+                'username', Perfiles.user_name,
+                'url', Perfiles.network_url
+            )
         ),
-        'location', json_build_object(
-            'address', Location.address,
-            'postalCode', Location.postal_code,
-            'city', Location.city,
-            'countryCode', Location.country_code,
-            'region', Location.region
-        ),
-        'profile', json_build_object(
-            'networkName', Perfiles.network_name,
-            'username', Perfiles.user_name,
-            'networkUrl', Perfiles.network_url
-        ),
-        'experiences', json_build_object(
-            'companyName', Experiencias.company_name,
+        'work', json_build_object(
+            'name', Experiencias.company_name,
             'position', Experiencias.position,
-            'companyUrl', Experiencias.company_url,
+            'url', Experiencias.company_url,
             'startDate', Experiencias.start_date,
             'endDate', Experiencias.end_date,
             'summary', Experiencias.summary,
@@ -41,7 +41,7 @@ function getCVById(req: Request, res: Response) {
         'volunteer', json_build_object(
             'organization', Voluntariados.organization,
             'position', Voluntariados.position,
-            'organizationUrl', Voluntariados.organization_url,
+            'url', Voluntariados.organization_url,
             'startDate', Voluntariados.start_date,
             'endDate', Voluntariados.end_date,
             'summary', Voluntariados.summary,
@@ -49,7 +49,7 @@ function getCVById(req: Request, res: Response) {
         ),
         'education', json_build_object(
             'institution', Educacion.institution,
-            'institutionUrl', Educacion.institution_url,
+            'url', Educacion.institution_url,
             'area', Educacion.area,
             'studyType', Educacion.study_type,
             'startDate', Educacion.start_date,
@@ -63,17 +63,17 @@ function getCVById(req: Request, res: Response) {
             'awarder', Premios.awarder,
             'summary', Premios.summary
         ),
-        'certifications', json_build_object(
+        'certificates', json_build_object(
             'name', Certificados.name,
             'date', Certificados.date,
             'issuer', Certificados.issuer,
-            'certificateUrl', Certificados.certificate_url
+            'url', Certificados.certificate_url
         ),
         'publications', json_build_object(
             'name', Publicaciones.name,
             'publisher', Publicaciones.publisher,
             'releaseDate', Publicaciones.release_date,
-            'publicationUrl', Publicaciones.publication_url,
+            'url', Publicaciones.publication_url,
             'summary', Publicaciones.summary
         ),
         'skills', json_build_object(
@@ -88,9 +88,9 @@ function getCVById(req: Request, res: Response) {
         'projects', json_build_object(
             'name', Proyectos.name,
             'isActive', Proyectos.is_active,
-            'summary', Proyectos.summary,
+            'description', Proyectos.summary,
             'highlights', Proyectos.highlights,
-            'projectUrl', Proyectos.project_url
+            'url', Proyectos.project_url
         )
     ) AS cv_data
 
